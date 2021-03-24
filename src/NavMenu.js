@@ -1,14 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import './css/style.css';
-import './css/bootstrap.min.css';
-import './css/custom.css';
-import './css/responsive.css';
 import {Route, Switch,BrowserRouter as Router} from 'react-router-dom';
 import Home from './Home';
 import Menu from './Menu';
 import Contact from './Contact';
 import About from './About';
+import Cart from './Cart';
+
 
 function NavMenu() {
     return (
@@ -26,6 +24,7 @@ function NavMenu() {
 						<li className="nav-item"><Link to="/about" className="nav-link">About</Link></li>
 						<li className="nav-item"><Link to="/menu" className="nav-link">Menu</Link></li>
 						<li className="nav-item"><Link to="/contact" className="nav-link">Contact</Link></li>
+						<li className="nav-item"><Link to="../Cart/Test.html" className="nav-link"><i class="fab fa-opencart" style={{fontSize:'24px',fontWeight:'800'}}></i></Link></li>
 					</ul>
 				</div>
 			</div>
@@ -37,6 +36,7 @@ function NavMenu() {
 				<Route path="/about"><About/></Route>
 				<Route path="/menu"><Menu/></Route>
 				<Route path="/contact"><Contact/></Route>
+				<Route path="/Cart/Test.html"><Cart/></Route>
 			</Switch>
 		</Router>
     )
