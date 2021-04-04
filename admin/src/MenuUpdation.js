@@ -78,36 +78,6 @@ function MenuUpdation() {
                         <button type="button" className="btn btn-danger badge-pill m-1" style={{width: '80px'}}><i className="fas fa-fw fa-trash-alt" /></button>
                       </td>
                     </tr>
-                    <tr className>
-                      <th scope="row" className="align-middle">1</th>
-                      <td className="align-middle text-right" width="15%"><img src="img\Burger.jpg" className="img-fluid shadow" style={{maxWidth: '60px', minWidth: '50px'}} /> </td>
-                      <td className="align-middle">Burger</td>
-                      <td className="align-middle">60Rs</td>
-                      <td className="text-right align-middle">
-                        <button type="button" className="btn btn-success badge-pill m-1" style={{width: '80px'}}>Edit</button>
-                        <button type="button" className="btn btn-danger badge-pill m-1" style={{width: '80px'}}><i className="fas fa-fw fa-trash-alt" /></button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" className="align-middle">2</th>
-                      <td className="align-middle text-right" width="15%"><img src="img\Sandwich.jpg" className="img-fluid shadow" style={{maxWidth: '60px', minWidth: '50px'}} /> </td>
-                      <td className="align-middle">Sandwich</td>
-                      <td className="align-middle">100Rs</td>
-                      <td className="text-right align-middle">
-                        <button type="button" className="btn btn-success badge-pill m-1" style={{width: '80px'}}>Edit</button>
-                        <button type="button" className="btn btn-danger badge-pill m-1" style={{width: '80px'}}><i className="fas fa-fw fa-trash-alt" /></button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" className="align-middle">3</th>
-                      <td className="align-middle text-right" width="15%"><img src="img\Dabeli.jpg" className="img-fluid shadow" style={{maxWidth: '60px', minWidth: '50px'}} /> </td>
-                      <td className="align-middle">Dabeli</td>
-                      <td className="align-middle">20Rs</td>
-                      <td className="text-right align-middle">
-                        <button type="button" className="btn btn-success badge-pill m-1" style={{width: '80px'}}>Edit</button>
-                        <button type="button" className="btn btn-danger badge-pill m-1" style={{width: '80px'}}><i className="fas fa-fw fa-trash-alt" /></button>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>

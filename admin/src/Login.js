@@ -1,59 +1,86 @@
-import React from 'react'
+import React,{useState} from 'react';
+import axios from 'axios';
+
+import AdminPanel from './AdminPanel';
+import { useHistory } from "react-router-dom";
 
 function Login() {
+
+  const history = useHistory();
+
+  const [data, setdata] = useState({
+    email_id:'',
+    password:''
+});
+
+
+const itemSubmit = async (e)=>{
+  e.preventDefault();
+ 
+  console.log(data);
+  await axios.post("https://feasta-postgres.herokuapp.com/auth/login/",data).then((result) => {
+      console.log(result.data);
+      history.push("/");
+  }).catch((err) => {
+      console.log(err);
+  });
+
+
+}
+
     return (
         <div>
-        <div className="container-login100" style={{backgroundImage: 'url("images/bg-01.jpg")'}}>
-        <div className="wrap-login100 p-l-55 p-r-55 p-t-40 p-b-30">
-          <form className="login100-form validate-form">
-            <div className="text-center p-b-30 txt1">
-              <img src="C:\Users\a\Documents\GitHub\live-dinner\Users\LOGIN\Login_v9\images\logo1.jpeg" alt="" width="50%" height="50%" style={{textAlign: 'center'}} />
+            <div className="container bg-gradient-primary">
+        {/* Outer Row */}
+        <div className="row justify-content-center">
+          <div className="col-xl-10 col-lg-12 col-md-9">
+            <div className="card o-hidden border-0 shadow-lg my-5">
+              <div className="card-body p-0">
+                {/* Nested Row within Card Body */}
+                <div className="row">
+                  <div className="col-lg-6 d-none d-lg-block bg-login-image" />
+                  <div className="col-lg-6">
+                    <div className="p-5">
+                      <div className="text-center">
+                        <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                      </div>
+                      <form className="user"  onSubmit={itemSubmit}>
+                        <div className="form-group">
+                          <input type="email" className="form-control form-control-user" id="exampleInputEmail" value={data.email_id} onChange={(e)=>{setdata({...data,email_id:e.target.value})}} aria-describedby="emailHelp" placeholder="Enter Email Address..." />
+                        </div>
+                        <div className="form-group">
+                          <input type="password" className="form-control form-control-user" id="exampleInputPassword" value={data.password} onChange={(e)=>{setdata({...data,password:e.target.value})}} placeholder="Password" />
+                        </div>
+                        <div className="form-group">
+                          <div className="custom-control custom-checkbox small">
+                            <input type="checkbox" className="custom-control-input" id="customCheck" />
+                            <label className="custom-control-label" htmlFor="customCheck">Remember Me</label>
+                          </div>
+                        </div>
+                        <input type="submit" className="btn btn-primary btn-user btn-block" value="Login"/>
+                        <hr />
+                        <a href="index.html" className="btn btn-google btn-user btn-block">
+                          <i className="fab fa-google fa-fw" /> Login with Google
+                        </a>
+                        <a href="index.html" className="btn btn-facebook btn-user btn-block">
+                          <i className="fab fa-facebook-f fa-fw" /> Login with Facebook
+                        </a>
+                      </form>
+                      <hr />
+                      <div className="text-center">
+                        <a className="small" href="forgot-password.html">Forgot Password?</a>
+                      </div>
+                      <div className="text-center">
+                        <a className="small" href="register.html">Create an Account!</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <span className="login100-form-title p-b-37">
-              Sign In
-            </span>
-            <div className="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-              <input className="input100" type="text" name="username" placeholder="Username or Email" />
-              <span className="focus-input100" />
-            </div>
-            <div className="wrap-input100 validate-input m-b-25" data-validate="Enter password">
-              <input className="input100" type="password" name="pass" placeholder="Password" />
-              <span className="focus-input100" />
-            </div>
-            <div className="container-login100-form-btn">
-              <button className="login100-form-btn">
-                Sign In
-              </button>
-            </div>
-            <div className="text-center p-t-30 txt1">
-              <a href="C:\Users\a\Documents\GitHub\live-dinner\Users\index.html" className="txt2 hov1">
-                Continue as Guest
-              </a>
-            </div>
-            <div className="text-center p-t-20 p-b-20">
-              <hr />
-              <span className="txt1">
-                Or login with
-              </span>
-            </div>
-            <div className="flex-c p-b-50">
-              <a href="#" className="login100-social-item">
-                <i className="fa fa-facebook-f" />
-              </a>
-              <a href="#" className="login100-social-item">
-                <img src="images/icons/icon-google.png" alt="GOOGLE" />
-              </a>
-            </div>
-            <div className="text-center p-b-50 txt1">
-              Don't have an account? 
-              <a href="register.html" className="txt2 hov1">
-                Sign Up
-              </a>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
-      <div id="dropDownSelect1" />
         </div>
     )
 }
