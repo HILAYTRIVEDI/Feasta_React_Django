@@ -1,4 +1,6 @@
-import React ,{useState}from 'react'
+import React ,{useState}from 'react';
+import {dumdata} from './dummy';
+import axios from 'axios';
 
 function AddItem() {
   const [data, setdata] = useState(
@@ -16,6 +18,8 @@ function AddItem() {
       e.preventDefault();
       console.log(data);
     }
+
+    //https://feasta-postgres.herokuapp.com/menu/add_category
 
     return (
         
@@ -46,10 +50,11 @@ function AddItem() {
                   <label htmlFor="validationCustom22">Select Catagory</label>
                   <div className="input-group">
                     <select className="form-control" id="validationCustom22" value={data.cate} onChange={e=>setdata({...data,cate:e.target.value})} required>
-                      <option value="Catagory 1">Catagory 1</option>
-                      <option value="Catagory 2">Catagory 2</option>
-                      <option value="Catagory 3">Catagory 3</option>
-                      <option value="Catagory 4">Catagory 4</option>
+                      {dumdata.map((data)=>{
+                        return( 
+                          <option value={data.company}>{data.company}</option> 
+                        );
+                      })}  
                     </select>
                     <div className="invalid-feedback">
                       Please select a Catagory.

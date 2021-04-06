@@ -1,7 +1,31 @@
-import React from 'react';
-import {Link,Route,Switch} from 'react-router-dom';
+import React,{useState,useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
+
+//https://feasta-postgres.herokuapp.com/menu/get_category  data
+/* {
+  admin_id: 
+} */
 
 function MenuUpdation() {
+
+  const admin_id = JSON.parse(localStorage.getItem('admin_id'));
+  const [cate, setcate] = useState([])
+ 
+
+  useEffect(() => {
+    async function catData(){
+      const requests = await axios.get('https://feasta-postgres.herokuapp.com/menu/get_category',{
+        params: {
+         admin_id:admin_id.admin_id
+        }
+      });
+      console.log(requests);
+  }
+  catData();
+  }, [])
+
+   
     return (
         <div>
         {/* Page Heading */}
@@ -21,13 +45,12 @@ function MenuUpdation() {
                     Select Catagory
                   </button>
                   <div className="dropdown-menu animate slideIn bg-gradient-light" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" href="#">All</a>
+                    
+                    <button className="dropdown-item">All</button>
                     <div className="dropdown-divider" />
-                    <a className="dropdown-item" href="#">Fast Food</a>
-                    <a className="dropdown-item" href="#">Beverages</a>
-                    <a className="dropdown-item" href="#">South Indian</a>
-                    <a className="dropdown-item" href="#">Pujabi</a>
-                    <a className="dropdown-item" href="#">Gujarati</a>
+                    {/*cate.map((data)=>{
+                      return(<button className="dropdown-item">{data.category_name}</button>)
+                    })*/}
                     <div className="dropdown-divider" />
                     <Link to="/add_category" className="dropdown-item">Add/Edit Catagories</Link>
                   </div>

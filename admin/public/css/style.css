@@ -1,3 +1,11 @@
+body{
+  background-color: #d65106;
+    background-image: linear-gradient(
+180deg
+, #d65106, #ef7e1d,#d65106);
+    background-size: cover;
+}
+
 .switch {
   position: relative;
   display: inline-block;

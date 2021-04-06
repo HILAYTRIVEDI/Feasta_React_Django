@@ -3,14 +3,33 @@ import {Link,Route,Switch} from 'react-router-dom';
 import MenuUpdation from './MenuUpdation';
 import AddCategory from './AddCategory';
 import AddItem from './AddItem';
-import Error from './Error'
+import Error from './Error';
+import {BrowserRouter as Router} from 'react-router-dom';
+import {useEffect,useState} from 'react';
+
 
 import React from 'react'
+import Login from './Login';
 
-function AdminPanel() {
+function AdminPanel(props) {
+
+  const admin = JSON.parse(localStorage.getItem("user_name"));
+
+  const [login, setlogin] = useState("");
+
+  console.log(props.history);
+
+  useEffect(() => {
+    var locallog = localStorage.getItem("login")?JSON.parse(localStorage.getItem("login")):{login:false};
+    console.log(locallog.login);
+    setlogin(localStorage.getItem("login"));
+    if(!locallog.login){
+      props.history.push('/login')
+    }
+  }, [login])
     return (
-        <div>
-             <div className="App">
+       <Router>
+    <div className="App">
     <div id="wrapper">
     {/* Sidebar */}
     <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -133,113 +152,14 @@ function AdminPanel() {
               </div>
             </li>
             {/* Nav Item - Alerts */}
-            <li className="nav-item dropdown no-arrow mx-1">
-              <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i className="fas fa-bell fa-fw" />
-                {/* Counter - Alerts */}
-                <span className="badge badge-danger badge-counter">3+</span>
-              </a>
-              {/* Dropdown - Alerts */}
-              <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 className="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a className="dropdown-item d-flex align-items-center" href="#">
-                  <div className="mr-3">
-                    <div className="icon-circle bg-primary">
-                      <i className="fas fa-file-alt text-white" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="small text-gray-500">December 12, 2019</div>
-                    <span className="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a className="dropdown-item d-flex align-items-center" href="#">
-                  <div className="mr-3">
-                    <div className="icon-circle bg-success">
-                      <i className="fas fa-donate text-white" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a className="dropdown-item d-flex align-items-center" href="#">
-                  <div className="mr-3">
-                    <div className="icon-circle bg-warning">
-                      <i className="fas fa-exclamation-triangle text-white" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
+            
             {/* Nav Item - Messages */}
-            <li className="nav-item dropdown no-arrow mx-1">
-              <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i className="fas fa-envelope fa-fw" />
-                {/* Counter - Messages */}
-                <span className="badge badge-danger badge-counter">7</span>
-              </a>
+           
               {/* Dropdown - Messages */}
-              <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 className="dropdown-header">
-                  Message Center
-                </h6>
-                <a className="dropdown-item d-flex align-items-center" href="#">
-                  <div className="dropdown-list-image mr-3">
-                    <img className="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="" />
-                    <div className="status-indicator bg-success" />
-                  </div>
-                  <div className="font-weight-bold">
-                    <div className="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div className="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a className="dropdown-item d-flex align-items-center" href="#">
-                  <div className="dropdown-list-image mr-3">
-                    <img className="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="" />
-                    <div className="status-indicator" />
-                  </div>
-                  <div>
-                    <div className="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div className="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a className="dropdown-item d-flex align-items-center" href="#">
-                  <div className="dropdown-list-image mr-3">
-                    <img className="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="" />
-                    <div className="status-indicator bg-warning" />
-                  </div>
-                  <div>
-                    <div className="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div className="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a className="dropdown-item d-flex align-items-center" href="#">
-                  <div className="dropdown-list-image mr-3">
-                    <img className="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="" />
-                    <div className="status-indicator bg-success" />
-                  </div>
-                  <div>
-                    <div className="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div className="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a className="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
-            <div className="topbar-divider d-none d-sm-block" />
             {/* Nav Item - User Information */}
             <li className="nav-item dropdown no-arrow">
               <a  className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span className="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span className="mr-2 d-none d-lg-inline text-gray-600 small">FEASTA welcomes you, <span style={{color:'Orange',fontWeight:"700",fontSize:'14px'}}>{" "+ admin.user_name}</span></span>
                 <img className="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
               </a>
               {/* Dropdown - User Information */}
@@ -257,10 +177,10 @@ function AdminPanel() {
                   Activity Log
                 </a>
                 <div className="dropdown-divider" />
-                <Link className="dropdown-item" to="/login" data-toggle="modal" data-target="#logoutModal">
+                <button className="dropdown-item"  data-toggle="modal" data-target="#logoutModal" onClick={()=>{localStorage.setItem("login",JSON.stringify({login:false}));props.history.push('/login')} }>
                   <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
                   Logout
-                </Link>
+                </button>
               </div>
             </li>
           </ul>
@@ -268,12 +188,13 @@ function AdminPanel() {
         {/* End of Topbar */}
         {/* Begin Page Content */}
         <div className="container-fluid">
+        
          <Switch>
-          <Route path="/error"><Error/></Route>
-          <Route path="/dashboard"><Dashboard/></Route>
-          <Route path="/menu_updation"><MenuUpdation/></Route>
-          <Route path="/add_category"><AddCategory/></Route>
-          <Route path="/add_item"><AddItem/></Route>
+          <Route path="/error" component={Error}></Route>
+          <Route path="/dashboard" component={Dashboard}></Route>
+          <Route path="/menu_updation" component={MenuUpdation}></Route>
+          <Route path="/add_category" component={AddCategory}></Route>
+          <Route path="/add_item" component={AddItem}></Route>
          </Switch>
         
           {/* Footer */}
@@ -290,7 +211,7 @@ function AdminPanel() {
       </div>
     </div></div>
     </div>
-        </div>
+    </Router>
     )
 }
 

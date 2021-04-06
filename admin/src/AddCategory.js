@@ -1,11 +1,24 @@
-import React,{useState}from 'react'
+import React,{useState}from 'react';
+import axios from 'axios';
+//https://feasta-postgres.herokuapp.com/menu/add_category
 
 function AddCategory() {
-    const [data, setdata] = useState({ category :""});
+    
+    const admin_id = JSON.parse(localStorage.getItem('admin_id'))
 
-    const itemSubmit =(e)=>{
+    const [data, setdata] = useState({ category_name :"" , admin_id:admin_id.admin_id});
+
+    const itemSubmit =async (e)=>{
+        console.log(data)
         e.preventDefault();
-        console.log(data);
+        await axios.post('https://feasta-postgres.herokuapp.com/menu/add_category/',data).then((result)=>{
+            if(result.data.status_code == 200){
+                alert(result.data.response_msg);
+                setdata({ category_name :"" , admin_id:admin_id.admin_id});
+            }else{
+                alert(result.data.response_msg);
+            }
+        })
     }
 
     return (
@@ -22,7 +35,7 @@ function AddCategory() {
                     <div className="col-md-12 mb-3">
                         <label htmlFor="validationCustom18">Category Name</label>
                         <div className="input-group">
-                        <input type="text" className="form-control" id="validationCustom18" placeholder="Category Name" value={data.category} onChange={(e)=>{setdata({...data,category: e.target.value})}} required />
+                        <input type="text" className="form-control" id="validationCustom18" placeholder="Category Name" value={data.category_name} onChange={(e)=>{setdata({...data,category_name: e.target.value})}} required />
                         <div className="valid-feedback">
                             Looks good!
                         </div>
